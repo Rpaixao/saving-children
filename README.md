@@ -1,3 +1,9 @@
+This is my first React JS project.
+
+This is just a prototype but the idea is to allow everyone to register problems related with children and others can try to help :)
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
