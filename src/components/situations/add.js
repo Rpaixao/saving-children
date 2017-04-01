@@ -30,34 +30,31 @@ class AddForm extends Component {
 
             <div className={`form-group ${title.touched && title.invalid ? 'has-error': ''}`}>
                 <label>Title</label>
-                <input type="text" className="form-control" {...title}/>
-                <div className="text-help">
-                    {title.touched && title.error}
-                </div>
+                <input type="text" id="title" className="form-control" {...title}/>
+                <label className="control-label" for="title">{title.touched && title.error}</label>
             </div>
 
             <div className={`form-group ${categories.touched && categories.invalid ? 'has-error': ''}`}>
-                <label>Categories</label>
-                <input type="text" className="form-control" {...categories}/>
-                <div className="text-help">
-                    {categories.touched && categories.error}
-                </div>
+                <label>Category</label>
+                <select className="form-control" id="categories" {...categories}>
+                    <option>Select a category</option>
+                    <option>negligence</option>
+                    <option>poverty</option>
+                    <option>school</option>
+                </select>
+                <label className="control-label" for="categories">{categories.touched && categories.error}</label>
             </div>
 
             <div className={`form-group ${situation.touched && situation.invalid ? 'has-error': ''}`}>
                 <label>Description</label>
-                <textarea type="text" className="form-control" {...situation}/>
-                <div className="text-help">
-                    {situation.touched && situation.error}
-                </div>
+                <textarea type="text" className="form-control" id="situation" {...situation}/>
+                <label className="control-label" for="situation">{situation.touched && situation.error}</label>
             </div>
 
             <div className={`form-group ${location.touched && location.invalid ? 'has-error': ''}`}>
                 <label>Location</label>
-                <textarea type="text" className="form-control" {...location}/>
-                <div className="text-help">
-                    {location.touched && location.error}
-                </div>
+                <textarea type="text" className="form-control" id="location" {...location}/>
+                <label className="control-label" for="location">{location.touched && location.error}</label>
             </div>
 
             <div className="btn pull-right btn-group">
