@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { getProblem, closeProblem, unloadSelectedProblem } from '../../actions/index'
-import { Link } from 'react-router';
 
 class ProblemShow extends Component {
   static contextTypes = {
@@ -48,7 +47,7 @@ class ProblemShow extends Component {
     }
 
     if (!problem) {
-      return <div>Loading...</div>;
+      return <div className="loader center-block"></div>;
     }
 
     return (

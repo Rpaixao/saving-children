@@ -42,7 +42,7 @@ class ListOfProblems extends Component {
                         <Link to="problems/add"  className="btn btn-primary" style={[ { marginTop: 10 } ]}>Report a Problem</Link>
                     </div>
                     <div className="page-header">
-                        <h1>Lista de Problemas</h1>
+                        <h1>Children Problems</h1>
                     </div>
 
                     <div className="list-group">
@@ -52,7 +52,7 @@ class ListOfProblems extends Component {
             );
         }
 
-        return <div> A obter resultados ...</div>
+        return <div className="loader center-block"></div>
     }
 }
 
