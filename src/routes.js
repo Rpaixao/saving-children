@@ -8,7 +8,7 @@ import ProblemShow from './components/situations/problem_show';
 
 export default (
     <Route path="/" component={App} >
-        <IndexRoute path="/" component={ListOfProblems}/>
+        <IndexRoute component={ListOfProblems}/>
         <Route path="problems" component={ListOfProblems}/>
         <Route path="problems/add" component={AddForm}/>
         <Route path="problems/:id" component={ProblemShow}/>
