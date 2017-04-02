@@ -274,7 +274,7 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="/pages/problemsmap.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="/pages/problemsmap.html"><i class="fa fa-dashboard active"></i> Dashboard</a>
                         </li>
                         <li>
                         <li>
@@ -372,7 +372,7 @@
                             <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a class="active" href="blank.html">Blank Page</a>
+                                    <a href="blank.html">Blank Page</a>
                                 </li>
                                 <li>
                                     <a href="login.html">Login Page</a>
@@ -392,8 +392,12 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Blank</h1>
+                        <div id="chartdiv" style="width: 100%; height: 500px;"></div>
                     </div>
+                    <div class="col-lg-12">
+                        <a href="/"  class="btn btn-primary">Reported Problems</a>
+                    </div>
+
                     <!-- /.col-lg-12 -->
                 </div>
                 <!-- /.row -->
@@ -404,6 +408,12 @@
 
     </div>
     <!-- /#wrapper -->
+
+    <script src="https://www.amcharts.com/lib/3/ammap.js"></script>
+    <script src="https://www.amcharts.com/lib/3/maps/js/worldLow.js"></script>
+    <script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+    <link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+    <script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
 
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
@@ -416,6 +426,8 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+
+    <script src="/js/chart.js"></script>
 
 </body>
 
