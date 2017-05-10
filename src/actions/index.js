@@ -1,4 +1,7 @@
 import * as firebase from 'firebase';
+import axios from 'axios';
+
+import CypherQueries from '../utils/cypher-queries/queries'
 
 var config = {
     apiKey: "AIzaSyAvoZQxHY_BtvglcNjwjLYl5Ybv0tck1L4",
@@ -18,6 +21,8 @@ export const CLOSE_PROBLEM = 'CLOSE_PROBLEM';
 export const GET_PROBLEMS = 'GET_PROBLEMS';
 export const GET_PROBLEM = 'GET_PROBLEM';
 export const UNLOAD_SELECTED_PROBLEM = 'UNLOAD_SELECTED_PROBLEM';
+
+const ROOT_URL = 'http://app65849072-i17QUs:b.XEjVtvCclJH2.8zhm9Bl1lr5v9Y9Q@hobby-fkcobejmojekgbkeknflegpl.dbs.graphenedb.com:24789/db/data/cypher';
 
 export function addProblem(props){
 
@@ -49,23 +54,35 @@ export function unloadSelectedProblem() {
 export function getProblems(){
 
     return function (dispatch) {
-        fb.database.ref('situations').once('value').then((response) => {
 
-            var data = [];
-            response.forEach(function(childSnapshot) {
-                var key = childSnapshot.key;
-                var childData = childSnapshot.val();
+        let query = CypherQueries.getChildrenListQuery();
 
-                childData.key = key;
-                data.push(childData);
+        let params = {
+            query: query,
+            params: {
+                countryName: 'India'
+            }
+        };
+
+        var config = {
+            headers: {
+                'Accept': 'application/json; charset=UTF-8',
+                'Content-Type': 'application/json'
+            },
+            auth: {
+                username: 'app65849072-i17QUs',
+                password: 'b.XEjVtvCclJH2.8zhm9Bl1lr5v9Y9Q'
+            },
+        };
+
+        return axios.post(ROOT_URL, params, config)
+            .then(function (response) {
+                dispatch(getProblemsHandleResponse(response.data.data));
+            })
+            .catch(function (error) {
+                console.log("ERROR");
+                console.log(error);
             });
-
-            dispatch(getProblemsHandleResponse(data));
-        })
-        .catch((error) => {
-            console.log('[E] [GER_PROBLEMS] ' + error);
-            dispatch(getProblemsHandleResponse(null));
-        });
     }
 }
 

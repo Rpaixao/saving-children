@@ -13,14 +13,24 @@ class ListOfProblems extends Component {
     renderProblems(problems){
 
         return problems.map( function(problem){
+
+            var children = problem[0].data;
             
             return (
 
-                <div key={problem.key} className="list-group">
+                <div key={children.key} className="list-group">
                     <Link to={"/problems/" + problem.key} className="list-group-item">
-                        <h4 className="list-group-item-heading">{ problem.title } <small>{problem.status === 'C' ? ' [CLOSED] ' : ' [OPEN]'}</small></h4>
-                        <p className="list-group-item-text"><b>categories: </b> { problem.categories }</p>
-                        <p className="list-group-item-text"><b>location: </b> { problem.location }</p>
+                        <div className="row">
+                        <div className="col-xs-2">
+                            <img src={'https://www.unbound.org' + children.photoURL} class="img-circle" alt="Cinque Terre" width="100" height="80"/>
+                        </div>
+                        <div className="col-xs-10">
+                            <h4 className="list-group-item-heading">{ children.name }</h4>
+                            <p className="list-group-item-text"><b>age: </b> { children.age }</p>
+                            <p className="list-group-item-text"><b>location: </b> { children.country }</p>
+                            <p className="list-group-item-text"><b>source: </b> { children.source }</p>
+                        </div>
+                        </div>
                     </Link>
                 </div>
             )
