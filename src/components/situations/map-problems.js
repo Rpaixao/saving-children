@@ -1,18 +1,14 @@
-/* global google */
-import _ from "lodash";
-
-import {
-    default as React,
-    Component,
-} from "react";
-
-import Helmet from "react-helmet";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import {
     withGoogleMap,
     GoogleMap,
     Marker,
+    InfoWindow
 } from "react-google-maps";
+
+import { getTotalChildrenByCountry } from '../../actions/index'
 
 /*
  * This is the modify version of:
@@ -21,22 +17,34 @@ import {
  * Add <script src="https://maps.googleapis.com/maps/api/js"></script> to your HTML to provide google.maps reference
  */
 const GettingStartedGoogleMap = withGoogleMap(props => (
+
     <GoogleMap
         ref={props.onMapLoad}
-        defaultZoom={3}
+        defaultZoom={2}
         defaultCenter={{ lat: 0, lng: 0 }}
         onClick={props.onMapClick}
     >
-        {props.markers.map(marker => (
-            <Marker
-                {...marker}
-                onRightClick={() => props.onMarkerRightClick(marker)}
+        {
+            props.markers.map(marker => (
+            <Marker key={marker[0]}
+                defaultAnimation = {2}
+                onClick={() => alert(marker[0] + ' clicked')}
+                title = {marker[4]}
+                position = {{
+                    lat: marker[1],
+                    lng: marker[2]}
+                }
             />
+
         ))}
     </GoogleMap>
 ));
 
-export default class ListOfProblems extends Component {
+class MapProblems extends Component {
+
+    componentWillMount() {
+        this.props.getTotalChildrenByCountry();
+    }
 
     state = {
         markers: [
@@ -108,25 +116,47 @@ export default class ListOfProblems extends Component {
     }
 
     render() {
-        return (
-            <div style={{height: `500px`}}>
-                <div className="page-header">
-                    <h1>Children Problems on Map</h1>
-                </div>
 
-                <GettingStartedGoogleMap
-                    containerElement={
-                        <div style={{ height: `100%` }} />
-                    }
-                    mapElement={
-                        <div style={{ height: `100%` }} />
-                    }
-                    onMapLoad={this.handleMapLoad}
-                    onMapClick={this.handleMapClick}
-                    markers={this.state.markers}
-                    onMarkerRightClick={this.handleMarkerRightClick}
-                />
-            </div>
-        );
+        console.log(this.props.totalByCountry);
+
+        if(this.props.totalByCountry && this.props.totalByCountry.length > 0){
+            return (
+                <div style={{height: `700px`}}>
+                    <div className="page-header">
+                        <h1>Children Problems on Map</h1>
+                    </div>
+
+                    <GettingStartedGoogleMap
+                        containerElement={
+                            <div style={{height: `100%`}}/>
+                        }
+                        mapElement={
+                            <div style={{height: `100%`}}/>
+                        }
+                        onMapLoad={this.handleMapLoad}
+                        onMapClick={this.handleMapClick}
+                        markers={this.props.totalByCountry}
+                        onMarkerRightClick={this.handleMarkerRightClick}
+                    />
+                </div>
+            );
+        }
+
+        return <div className="loader center-block"></div>
     }
+
 }
+
+function mapStateToProps(state) {
+    var totalByCountry = state.problems.totalByCountry;
+    return {totalByCountry}
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        //bindActionCreators({getProblems}, dispatch),
+        getTotalChildrenByCountry: () => dispatch(getTotalChildrenByCountry()),
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MapProblems);

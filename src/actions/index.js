@@ -20,9 +20,11 @@ export const ADD_PROBLEM = 'ADD_PROBLEM';
 export const CLOSE_PROBLEM = 'CLOSE_PROBLEM';
 export const GET_PROBLEMS = 'GET_PROBLEMS';
 export const GET_PROBLEM = 'GET_PROBLEM';
+export const GET_TOTAL_BY_COUNTRY = 'GET_TOTAL_BY_COUNTRY';
 export const UNLOAD_SELECTED_PROBLEM = 'UNLOAD_SELECTED_PROBLEM';
 
-const ROOT_URL = 'http://app65849072-i17QUs:b.XEjVtvCclJH2.8zhm9Bl1lr5v9Y9Q@hobby-fkcobejmojekgbkeknflegpl.dbs.graphenedb.com:24789/db/data/cypher';
+//const ROOT_URL = 'http://app65849072-i17QUs:b.XEjVtvCclJH2.8zhm9Bl1lr5v9Y9Q@hobby-fkcobejmojekgbkeknflegpl.dbs.graphenedb.com:24789/db/data/cypher';
+const ROOT_URL = 'http://neo4j:nosql@localhost:7474/db/data/cypher';
 
 export function addProblem(props){
 
@@ -86,6 +88,39 @@ export function getProblems(){
     }
 }
 
+export function getTotalChildrenByCountry(){
+
+    return function (dispatch) {
+
+        let query = CypherQueries.getTotalChildrenByCountry();
+
+        let params = {
+            query: query,
+        };
+
+        var config = {
+            headers: {
+                'Accept': 'application/json; charset=UTF-8',
+                'Content-Type': 'application/json'
+            },
+            auth: {
+                username: 'app65849072-i17QUs',
+                password: 'b.XEjVtvCclJH2.8zhm9Bl1lr5v9Y9Q'
+            },
+        };
+
+        return axios.post(ROOT_URL, params, config)
+            .then(function (response) {
+                console.log(response)
+                dispatch(getTotalChildrenByCountryHandleResponse(response.data.data));
+            })
+            .catch(function (error) {
+                console.log("ERROR");
+                console.log(error);
+            });
+    }
+}
+
 export function getProblem(problemKey){
 
     return function (dispatch) {
@@ -111,6 +146,13 @@ export function getProblemHandleResponse (response = {key:'-1'}) {
 export function getProblemsHandleResponse (response = {}) {
     return {
         type: GET_PROBLEMS,
+        payload: response
+    };
+}
+
+export function getTotalChildrenByCountryHandleResponse (response = {}) {
+    return {
+        type: GET_TOTAL_BY_COUNTRY,
         payload: response
     };
 }
