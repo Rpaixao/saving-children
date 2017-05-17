@@ -22,6 +22,7 @@ export const GET_PROBLEMS = 'GET_PROBLEMS';
 export const GET_PROBLEM = 'GET_PROBLEM';
 export const GET_TOTAL_BY_COUNTRY = 'GET_TOTAL_BY_COUNTRY';
 export const UNLOAD_SELECTED_PROBLEM = 'UNLOAD_SELECTED_PROBLEM';
+export const SELECT_COUNTRY ='SELECT_COUNTRY';
 
 //const ROOT_URL = 'http://app65849072-i17QUs:b.XEjVtvCclJH2.8zhm9Bl1lr5v9Y9Q@hobby-fkcobejmojekgbkeknflegpl.dbs.graphenedb.com:24789/db/data/cypher';
 const ROOT_URL = 'http://neo4j:nosql@localhost:7474/db/data/cypher';
@@ -53,7 +54,17 @@ export function unloadSelectedProblem() {
     };
 }
 
-export function getProblems(){
+export function selectCountry(country) {
+
+    console.log("action" + country);
+
+    return {
+        type: SELECT_COUNTRY,
+        selectedCountry: country
+    };
+}
+
+export function getProblems(country){
 
     return function (dispatch) {
 
@@ -62,7 +73,7 @@ export function getProblems(){
         let params = {
             query: query,
             params: {
-                countryName: 'India'
+                countryName: country
             }
         };
 

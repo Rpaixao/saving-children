@@ -2,13 +2,15 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
-import { getProblems } from '../../actions/index'
+function getImageURL(children){
+    if(children.source === 'UNBOUND'){
+        return 'https://www.unbound.org' + children.photoURL;
+    } else if (children.source === 'WORLDVISION' || children.source === 'CCFCanada' || children.source === 'COMPASSION'){
+        return children.photoURL;
+    }
+}
 
 class ListOfProblems extends Component {
-
-    componentWillMount(){
-        this.props.getProblems();
-    }
 
     renderProblems(problems){
 
@@ -22,13 +24,11 @@ class ListOfProblems extends Component {
                     <Link to={"/problems/" + problem.key} className="list-group-item">
                         <div className="row">
                         <div className="col-xs-2">
-                            <img src={'https://www.unbound.org' + children.photoURL} class="img-circle" alt="Cinque Terre" width="100" height="80"/>
+                            <img src={getImageURL(children)} class="img-circle" alt="Cinque Terre" width="45" height="50"/>
                         </div>
                         <div className="col-xs-10">
-                            <h4 className="list-group-item-heading">{ children.name }</h4>
-                            <p className="list-group-item-text"><b>age: </b> { children.age }</p>
-                            <p className="list-group-item-text"><b>location: </b> { children.country }</p>
-                            <p className="list-group-item-text"><b>source: </b> { children.source }</p>
+                            <h4 className="list-group-item-heading">{ children.name }, {children.age}</h4>
+                            <p className="list-group-item-text"><b></b> { children.source }</p>
                         </div>
                         </div>
                     </Link>
@@ -48,13 +48,6 @@ class ListOfProblems extends Component {
 
 
                 <div>
-                    <div className="btn pull-right">
-                        <Link to="problems/add"  className="btn btn-primary" style={[ { marginTop: 10 } ]}>Report a Problem</Link>
-                    </div>
-                    <div className="page-header">
-                        <h1>Children Problems</h1>
-                    </div>
-
                     <div className="list-group">
                         { this.renderProblems(this.props.problems) }
                     </div>
@@ -62,7 +55,12 @@ class ListOfProblems extends Component {
             );
         }
 
-        return <div className="loader center-block"></div>
+        return (
+        <div>
+            <h4>Selecione um país</h4>
+            <div className="loader center-block"></div>
+        </div>
+        );
     }
 }
 
@@ -75,7 +73,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch){
     return {
         //bindActionCreators({getProblems}, dispatch),
-        getProblems: () => dispatch(getProblems()),
+        //getProblems: () => dispatch(getProblems()),
     };
 }
 
