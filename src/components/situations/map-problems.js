@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import ListOfProblems from './list';
 
@@ -33,6 +33,10 @@ const GettingStartedGoogleMap = withGoogleMap(props => (
 
 class MapProblems extends Component {
 
+    static contextTypes = {
+        router: PropTypes.object
+    };
+
     onMarkerPress = this.onMarkerPress.bind(this);
 
     componentWillMount() {
@@ -49,6 +53,7 @@ class MapProblems extends Component {
         }
         this.props.selectCountry(selectedCountry);
         this.props.getProblems(selectedCountry.name);
+        this.context.router.push('/map/list/' + country[0]);
     }
 
     render() {
@@ -56,11 +61,8 @@ class MapProblems extends Component {
         if(this.props.totalByCountry && this.props.totalByCountry.length > 0){
             return (
                 <div>
-                    <div className="page-header">
-                        <h1>Children Problems on Map</h1>
-                    </div>
                     <div className="row">
-                        <div className="col-xs-8" style={{height: `500px`}}>
+                        <div className="col-xs-12" style={{height: `700px`}}>
                             <GettingStartedGoogleMap
                                 containerElement={
                                     <div style={{height: `100%`}}/>
@@ -72,13 +74,9 @@ class MapProblems extends Component {
                                 markers={this.props.totalByCountry}
                             />
                         </div>
-                        <div className="col-xs-4">
-                            <div class="panel-heading">
-                                <h4> { this.props.selectedCountry ? this.props.selectedCountry.name : ''}</h4>
-                                <h6> { this.props.selectedCountry ? 'There are ' + this.props.selectedCountry.children + ' children in poverty situations in ' + this.props.selectedCountry.name : ''}</h6>
-                            </div>
-                            <div class="panel-body">
-                                <ListOfProblems/>
+                        <div className="map-inner-panel">
+                            <div className="col-xs-12">
+                                    {this.props.sidebar}
                             </div>
                         </div>
                     </div>

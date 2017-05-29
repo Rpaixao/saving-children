@@ -10,8 +10,8 @@ const INITIAL_STATE = { all: [], totalByCountry: [], selectedProblem: null, sele
 
 export default function(state = INITIAL_STATE, action) {
     switch(action.type) {
-        case GET_PROBLEMS:
-            return {...state, all: action.payload};
+        case GET_PROBLEM:
+            return {...state, selectedProblem: action.payload};
         case GET_PROBLEMS:
             return {...state, all: action.payload};
         case GET_TOTAL_BY_COUNTRY:
@@ -19,7 +19,6 @@ export default function(state = INITIAL_STATE, action) {
         case UNLOAD_SELECTED_PROBLEM:
             return {...state, selectedProblem: null}
         case SELECT_COUNTRY:
-            console.log("reducer: " + action.selectedCountry)
             return {...state, selectedCountry: action.selectedCountry}
         default:
             return state;
