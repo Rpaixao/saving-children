@@ -59,10 +59,24 @@ class MapProblems extends Component {
     render() {
 
         if(this.props.totalByCountry && this.props.totalByCountry.length > 0){
+            const isMobile = window.innerWidth <= 500;
+
+            if(isMobile && this.props.routes[this.props.routes.length - 1].path !== "/map"){
+                return (
+                    <div>
+                        <div className="map-inner-panel map-inner-panel-mobile">
+                            <div className="col-xs-12">
+                                {this.props.sidebar}
+                            </div>
+                        </div>
+                    </div>
+                )
+            }
+
             return (
                 <div>
                     <div className="row">
-                        <div className="col-xs-12" style={{height: `700px`}}>
+                        <div className="col-xs-12" style={{height: window.innerHeight - 100}}>
                             <GettingStartedGoogleMap
                                 containerElement={
                                     <div style={{height: `100%`}}/>
@@ -74,7 +88,7 @@ class MapProblems extends Component {
                                 markers={this.props.totalByCountry}
                             />
                         </div>
-                        <div className="map-inner-panel">
+                        <div className="map-inner-panel map-inner-panel-mobile">
                             <div className="col-xs-12">
                                     {this.props.sidebar}
                             </div>

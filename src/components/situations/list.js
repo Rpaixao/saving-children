@@ -63,7 +63,7 @@ class ListOfProblems extends Component {
                         <h4> { this.props.params.country }</h4>
                         <h6> { this.props.selectedCountry ? 'We have found ' + this.props.selectedCountry.children + ' children in poverty situations in ' + this.props.selectedCountry.name : ''}</h6>
                     </div>
-                    <div className="panel-body mygrid-scrollable-div">
+                    <div className="panel-body mygrid-scrollable-div mygrid-scrollable-div-mobile">
                         { this.renderProblems(this.props.problems) }
                     </div>
                 </div>
