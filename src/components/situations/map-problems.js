@@ -25,7 +25,11 @@ const GettingStartedGoogleMap = withGoogleMap(props => (
                         lat: marker[1],
                         lng: marker[2]}
                     }
-                />
+                >
+
+                    <p>LLALALALALA</p>
+
+                    </Marker>
             ))
         }
     </GoogleMap>
