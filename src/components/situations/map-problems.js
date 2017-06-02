@@ -27,8 +27,6 @@ const GettingStartedGoogleMap = withGoogleMap(props => (
                     }
                 >
 
-                    <p>LLALALALALA</p>
-
                     </Marker>
             ))
         }
@@ -48,7 +46,6 @@ class MapProblems extends Component {
     }
 
     onMarkerPress(country){
-        console.log(country)
         let selectedCountry = {
             name: country[0],
             lat: country[1],

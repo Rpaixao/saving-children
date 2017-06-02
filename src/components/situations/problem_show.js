@@ -16,7 +16,6 @@ class ProblemShow extends Component {
     router: PropTypes.object
   };
 
-
   constructor(props){
       super(props);
 
@@ -76,6 +75,7 @@ class ProblemShow extends Component {
             </Modal>
             
             <div className="panel-heading">
+                <a target="_blank" href="javascript:history.back()" className="btn btn-primary btn-xs a-margin">Back</a>
                 <h3> { childrenBaseInformation.name } </h3>
                 <h5> { childrenBaseInformation.age } years old</h5>
                 <h5> { childrenBaseInformation.source } </h5>

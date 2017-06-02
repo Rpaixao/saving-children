@@ -60,6 +60,7 @@ class ListOfProblems extends Component {
 
                 <div className="panel panel-default">
                     <div className="panel-heading">
+                        <a target="_blank" href="javascript:history.back()" className="btn btn-primary btn-xs a-margin">Back</a>
                         <h4> { this.props.params.country }</h4>
                         <h6> { this.props.selectedCountry ? 'We have found ' + this.props.selectedCountry.children + ' children in poverty situations in ' + this.props.selectedCountry.name : ''}</h6>
                     </div>
