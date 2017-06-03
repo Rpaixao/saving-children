@@ -38,8 +38,8 @@ class ListOfProblems extends Component {
                         <div className="col-xs-2">
                             <img src={getImageURL(children)} class="img-circle" alt="Cinque Terre" width="45" height="50"/>
                         </div>
-                        <div className="col-xs-10 text-center">
-                            <h4 className="list-group-item-heading">{ children.name }, {children.age}</h4>
+                        <div className="col-xs-8 children-list-item">
+                            <h5 className="list-group-item-heading">{ children.name }, {children.age}</h5>
                             <h6 className="list-group-item-text"><b></b> { children.source }</h6>
                         </div>
                         </div>
