@@ -56,27 +56,39 @@ export function unloadSelectedProblem() {
 
 export function selectCountry(country) {
 
-    console.log("action" + country);
-
     return {
         type: SELECT_COUNTRY,
         selectedCountry: country
     };
 }
 
-export function getProblems(country){
+export function getProblems(country, term){
 
+    alert(term);
 
     return function (dispatch) {
 
-        let query = CypherQueries.getChildrenListQuery();
+        var query;
+        let params = {};
 
-        let params = {
-            query: query,
-            params: {
-                countryName: country
-            }
-        };
+        if(!term){
+            query = CypherQueries.getChildrenListQuery();
+            params = {
+                query: query,
+                params: {
+                    countryName: country
+                }
+            };
+        } else {
+            query = CypherQueries.getChildrenListByAgeQuery(term);
+            params = {
+                query: query,
+                params: {
+                    age: term,
+                    countryName: country
+                }
+            };
+        }
 
         var config = {
             headers: {
@@ -100,15 +112,29 @@ export function getProblems(country){
     }
 }
 
-export function getTotalChildrenByCountry(){
+export function getTotalChildrenByCountry(term){
+
+    console.log(term);
 
     return function (dispatch) {
 
-        let query = CypherQueries.getTotalChildrenByCountry();
+        var query;
+        let params = {};
 
-        let params = {
+        if(!term){
+          query = CypherQueries.getTotalChildrenByCountry();
+          params = {
             query: query,
-        };
+          };
+        } else {
+          query = CypherQueries.getTotalChildrenByAgeGroupByCountry(term);
+            params = {
+                query: query,
+                params: {
+                    age: term
+                }
+            };
+        }
 
         var config = {
             headers: {

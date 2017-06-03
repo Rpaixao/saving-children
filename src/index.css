@@ -23,6 +23,13 @@
     width: 300px;
   }
 
+  .map-inner-form-panel {
+    position: absolute;
+    margin-left: 50%;
+    padding-top: 10px;
+    padding-right: 20px;
+  }
+
   .top-buffer {
     margin-top: 20px;
   }
