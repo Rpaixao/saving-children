@@ -4509,7 +4509,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     background-color: transparent;
 }
 .navbar-default .navbar-text {
-    color: #ffffff;
+    color: #1c1c1c;
+    font-weight: bold;
 }
 .navbar-default .navbar-nav > li > a {
     color: #ffffff;
