@@ -64,8 +64,6 @@ export function selectCountry(country) {
 
 export function getProblems(country, term){
 
-    alert(term);
-
     return function (dispatch) {
 
         var query;
