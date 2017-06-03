@@ -11,7 +11,7 @@ export default (
     <Route path="/" component={App} >
         <IndexRoute component={MapProblems}/>
         <Route path="/map" component={MapProblems}>
-                <Route path="/map/list/:country" component={{sidebar: ListOfProblems}}/>
+                <Route path="/map/list/:country/:age" component={{sidebar: ListOfProblems}}/>
                 <Route path="/map/detail/:id" component={{sidebar: ProblemShow}}/>
          </Route>
         <Route path="problems/add" component={AddForm}/>

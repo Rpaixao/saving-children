@@ -60,11 +60,9 @@ class MapProblems extends Component {
             children: country[3]
         }
 
-        console.log("Marker PRessed");
         this.props.selectCountry(selectedCountry);
-        console.log("Country Selected");
         this.props.getProblems(selectedCountry.name, parseInt(this.state.term));
-        this.context.router.push('/map/list/' + country[0]);
+        this.context.router.push('/map/list/' + country[0] + '/' + parseInt(this.state.term));
     }
 
     onInputChange(term) {

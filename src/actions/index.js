@@ -112,8 +112,6 @@ export function getProblems(country, term){
 
 export function getTotalChildrenByCountry(term){
 
-    console.log(term);
-
     return function (dispatch) {
 
         var query;

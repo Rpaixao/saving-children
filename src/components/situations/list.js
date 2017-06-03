@@ -19,8 +19,8 @@ class ListOfProblems extends Component {
     };
 
     componentWillMount() {
-        this.props.getProblems(this.props.params.country);
-        this.props.selectCountry(this.props.params.country);
+        let age = this.props.params.age ? parseInt(this.props.params.age) : null;
+        this.props.getProblems(this.props.params.country, age);
     }
 
     renderProblems(problems){;
