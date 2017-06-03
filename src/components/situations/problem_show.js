@@ -77,17 +77,17 @@ class ProblemShow extends Component {
             <div className="panel-heading">
                 <a target="_blank" href="javascript:history.back()" className="btn btn-primary btn-xs a-margin">Back</a>
                 <h3> { childrenBaseInformation.name } </h3>
-                <h5> { childrenBaseInformation.age } years old</h5>
+                <h6> { childrenBaseInformation.age } years old</h6>
                 <h5> { childrenBaseInformation.source } </h5>
             </div>
 
             <div className="panel-body">
                  <div className="text-center">
+                     <img src={getImageURL(childrenBaseInformation)} className="img-circle img-margin" width="100" height="110" />
+                      <h5> { childrenBaseInformation.summary } </h5>
                      <div className="btn-group btn-group-justified">
                          <a href="#" onClick={() => this.setState({showModal: true})} className="btn btn-default">More about me</a>
                      </div>
-                      <img src={getImageURL(childrenBaseInformation)} className="img-circle img-margin" width="150" height="160" />
-                      <h5> { childrenBaseInformation.summary } </h5>
                 </div>
             </div>
 
