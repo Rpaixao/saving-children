@@ -106,7 +106,7 @@ class MapProblems extends Component {
                                }
                            })}
                            onChange={event => this.onInputChange(event.target.value)} />
-                    <span className="input-group-addon" id="basic-addon1">(Press Enter to Submit)</span>
+                    <span className="input-group-addon" id="basic-addon1">(Enter to Submit)</span>
                 </div>
 
                 <div className="row">
