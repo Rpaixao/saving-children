@@ -74,7 +74,6 @@ class ListOfProblems extends Component {
         return (
 
         <div>
-            <h4>Selecione um país </h4>
             <div className="loader center-block"></div>
         </div>
         );

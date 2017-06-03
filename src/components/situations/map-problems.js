@@ -26,6 +26,7 @@ const GettingStartedGoogleMap = withGoogleMap(props => (
                         lat: marker[1],
                         lng: marker[2]}
                     }
+                    options={{label: marker[3].toString()}}
                 >
 
                     </Marker>
@@ -67,7 +68,11 @@ class MapProblems extends Component {
 
     onInputChange(term) {
         this.setState({term});
-        this.props.getTotalChildrenByCountry(parseInt(term));
+        //this.props.getTotalChildrenByCountry(parseInt(term));
+    }
+
+    onEnterPress() {
+        this.props.getTotalChildrenByCountry(parseInt(this.state.term));
     }
 
     render() {
@@ -93,7 +98,15 @@ class MapProblems extends Component {
 
                 <div className="input-group col-xs-12">
                     <span className="input-group-addon" id="basic-addon1">Filters</span>
-                    <input type="text" className="form-control" placeholder="Filter by age, name and/or problem (separated by a comma)" value={this.state.term} onChange={event => this.onInputChange(event.target.value)} />
+                    <input type="text" className="form-control" placeholder="Filter by age, name and/or problem (separated by a comma)"
+                           value={this.state.term}
+                           onKeyPress={(e => {
+                               if(e.key === 'Enter') {
+                                   this.onEnterPress(event.target.value);
+                               }
+                           })}
+                           onChange={event => this.onInputChange(event.target.value)} />
+                    <span className="input-group-addon" id="basic-addon1">(Press Enter to Submit)</span>
                 </div>
 
                 <div className="row">
