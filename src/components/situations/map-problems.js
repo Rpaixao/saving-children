@@ -92,8 +92,14 @@ class MapProblems extends Component {
         }
         return (
             <div className="col-xs-12">
+
+                <div className="input-group col-xs-12">
+                    <span className="input-group-addon" id="basic-addon1">Filters</span>
+                    <input type="text" className="form-control" placeholder="Filter by age, name and/or problem (separated by a comma)" value={this.state.term} onChange={event => this.onInputChange(event.target.value)} />
+                </div>
+
                 <div className="row">
-                    <div className="col-xs-12" style={{height: window.innerHeight - 100}}>
+                    <div className="col-xs-12 map-container" style={{height: window.innerHeight - 100 - 80}}>
                         <GettingStartedGoogleMap
                             containerElement={
                                 <div style={{height: `100%`}}/>
@@ -108,34 +114,7 @@ class MapProblems extends Component {
                         </GettingStartedGoogleMap>
                     </div>
 
-                    <div className="row map-inner-form-panel col-sm-5">
-                        <nav className="navbar navbar-default">
-                            <div className="container-fluid">
-
-                                <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                                    <ul className="nav navbar-nav">
-                                        <li className="dropdown">
-                                            <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Type of Search <span className="caret"></span></a>
-                                            <ul className="dropdown-menu">
-                                                <li><a href="#">Any</a></li>
-                                                <li role="separator" className="divider"></li>
-                                                <li><a href="#">Children Support</a></li>
-                                                <li><a href="#">Charity Events</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                    <form className="navbar-form navbar-left" >
-                                        <div className="form-group">
-                                            <input type="text" className="form-control" placeholder="Search" value={this.state.term} onChange={event => this.onInputChange(event.target.value)} />
-                                        </div>
-                                        <button type="submit" className="btn btn-default">Submit</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </nav>
-                    </div>
-
-                    <div className="map-inner-panel map-inner-panel-mobile">
+                    <div className="map-inner-panel map-inner-panel-mobile" >
                         <div className="col-xs-12">
                             {this.props.sidebar}
                         </div>

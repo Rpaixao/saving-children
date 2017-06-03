@@ -82,7 +82,7 @@ class ProblemShow extends Component {
             </div>
 
             <div className="panel-body">
-                 <div className="text-center mygrid-scrollable-div mygrid-scrollable-div-mobile">
+                 <div className="text-center">
                      <div className="btn-group btn-group-justified">
                          <a href="#" onClick={() => this.setState({showModal: true})} className="btn btn-default">More about me</a>
                      </div>
