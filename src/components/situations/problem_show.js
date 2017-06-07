@@ -45,6 +45,10 @@ class ProblemShow extends Component {
 
     let childrenBaseInformation = problem[0][0].data;
 
+      /* TODO: Dinamizar isto consoante a organização. Neste momento está estatico para o worldvision */
+    let childrenDetailURL =  "https://donate.worldvision.org/singlepagecheckout/cart/addProducts?itemId[]=" + childrenBaseInformation.sourceID + "&newSpon[]=1"
+
+      /* TODO: Link da organização está estática para o world vision*/
     return (
 
         <div className="panel panel-default">
@@ -52,7 +56,7 @@ class ProblemShow extends Component {
             <Modal show={this.state.showModal} onHide={() => this.setState({showModal: false})}>
                 <Modal.Header >
                     <Modal.Title>More about { childrenBaseInformation.name }, { childrenBaseInformation.age } years old</Modal.Title>
-                    <a target="_blank" href="https://www.ccfcanada.ca/about-us/social-impact" className="btn btn-primary btn-xs a-margin">{ childrenBaseInformation.source }</a>
+                    <a target="_blank" href="https://www.worldvision.org/about-us" className="btn btn-primary btn-xs a-margin">{ childrenBaseInformation.source }</a>
                 </Modal.Header>
                 <Modal.Body>
 
@@ -62,11 +66,11 @@ class ProblemShow extends Component {
                     <h4>My Video</h4>
                     <div className="text-center">
                         <video name="media" width="320" height="240" controls autoPlay>
-                            <source src="https://damjoied8te1b.cloudfront.net/child/video/184802-WSUT_20170208_160028_CGV_Web.mp4" type="video/mp4"/>
+                            <source src={childrenBaseInformation.videoURL} type="video/mp4"/>
                         </video>
                     </div>
 
-                    <a href="#" className="btn btn-primary btn-lg btn-block a-margin">Help me !</a>
+                    <a target="_blank" href={childrenDetailURL} className="btn btn-primary btn-lg btn-block a-margin">Help me !</a>
 
                 </Modal.Body>
                 <Modal.Footer>
@@ -92,7 +96,7 @@ class ProblemShow extends Component {
             </div>
 
             <div className="panel-footer">
-                <a href="#" className="btn btn-primary btn-lg btn-block a-margin">Help me !</a>
+                <a target="_blank" href={childrenDetailURL} className="btn btn-primary btn-lg btn-block a-margin">Help me !</a>
             </div>
 
         </div>
